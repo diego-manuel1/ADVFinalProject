@@ -36,8 +36,10 @@ public class ControlPlayer2 : MonoBehaviour
         playerInput = Vector3.ClampMagnitude(playerInput, 1);
         CamDirection();
         movePlayer = playerInput.x * camRight + playerInput.z * camForward;
-        player.transform.LookAt(player.transform.position + movePlayer);
-
+        //player.transform.LookAt(player.transform.position + movePlayer);
+        //player.transform.LookAt(player.transform.position + movePlayer);
+        //player.transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, Camera.main.transform.localEulerAngles.y, transform.localEulerAngles.z);
+        player.gameObject.transform.forward = Vector3.Lerp(player.transform.forward, movePlayer, 15f*Time.deltaTime);
         player.Move(movePlayer * playerSpeed * Time.deltaTime);
 
         animator.SetFloat("H", currentInput.x);
