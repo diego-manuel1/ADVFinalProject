@@ -13,6 +13,11 @@ public class PlayerControl : MonoBehaviour
 
     public Animator animator;
     private Vector2 currentInput;
+
+    public Camera camaraPrincipal;
+    public Vector3 vectorInput;
+
+    public CharacterController characterController;
     void Start()
     {
         animator.SetFloat("H", 0);
@@ -29,18 +34,31 @@ public class PlayerControl : MonoBehaviour
         if (vectorInput.magnitude > 1)
         { vectorInput = vectorInput.normalized; }*/
 
-
+        //Modificar blend
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
-
-
-
+        
         Vector2 targetInput = new Vector2(moveHorizontal, moveVertical);
         currentInput = Vector2.Lerp(currentInput, targetInput, Time.deltaTime / transitionTime);
+        //Modificar blend
+       
+        //Movimiento
+        Vector3 delante = camaraPrincipal.transform.forward * Input.GetAxis("Vertical");
+        Vector3 derecha = camaraPrincipal.transform.right * Input.GetAxis("Horizontal");
+        delante.y = 0.0f; derecha.y = 0.0f;
+        vectorInput = delante + derecha;
+        if (vectorInput.magnitude > 1)
+        { vectorInput = vectorInput.normalized; }
+        Vector3 direccionObjetivo = vectorInput * moveSpeed;
+        Vector3 direccion = Vector3.RotateTowards(this.transform.forward, direccionObjetivo, 2* moveSpeed * Time.deltaTime, 0);
+        //this.transform.rotation = Quaternion.LookRotation(direccion);
+        //this.transform.Rotate(direccion);
+        this.characterController.Move(direccionObjetivo);
+        //Movimiento
 
-
-
+        //Modificar blend
         animator.SetFloat("H", currentInput.x);
         animator.SetFloat("V", currentInput.y);
+        //Modificar blend
     }
 }
