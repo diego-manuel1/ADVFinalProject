@@ -17,6 +17,9 @@ public class ControlPlayer2 : MonoBehaviour
     public float transitionTime = 0.2f;
     private Vector2 currentInput;
     public Animator animator;
+    public float gravity = -9.81f;
+    private float fallingVelocity = 0;
+    public float jumpSpeed = 20;
     // Use this for initialization
     void Start()
     {
@@ -26,21 +29,38 @@ public class ControlPlayer2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        float jump = 0;
         horizontalMove = Input.GetAxis("Horizontal");
         verticalMove = Input.GetAxis("Vertical");
         Vector2 targetInput = new Vector2(horizontalMove, verticalMove);
         currentInput = Vector2.Lerp(currentInput, targetInput, Time.deltaTime / transitionTime);
 
-
         playerInput = new Vector3(horizontalMove, 0, verticalMove);
         playerInput = Vector3.ClampMagnitude(playerInput, 1);
         CamDirection();
+
+        //Apply gravity
+        if(player.isGrounded)
+        {
+            fallingVelocity= 0;
+        }
+        else
+        {
+            fallingVelocity += gravity * Time.deltaTime;
+        }
+
+        if(player.isGrounded && Input.GetButtonDown("Jump"))
+        {
+            jump = jumpSpeed;
+        }
+        Vector3 gravityVector = new Vector3(0, fallingVelocity + jump, 0);
+
         movePlayer = playerInput.x * camRight + playerInput.z * camForward;
         //player.transform.LookAt(player.transform.position + movePlayer);
         //player.transform.LookAt(player.transform.position + movePlayer);
         //player.transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, Camera.main.transform.localEulerAngles.y, transform.localEulerAngles.z);
         player.gameObject.transform.forward = Vector3.Lerp(player.transform.forward, movePlayer, 15f*Time.deltaTime);
-        player.Move(movePlayer * playerSpeed * Time.deltaTime);
+        player.Move((movePlayer * playerSpeed + gravityVector) * Time.deltaTime);
 
         animator.SetFloat("H", currentInput.x);
         animator.SetFloat("V", currentInput.y);
