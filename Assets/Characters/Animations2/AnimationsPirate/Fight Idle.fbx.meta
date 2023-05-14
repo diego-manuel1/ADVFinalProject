@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e2dd4d3172832564083dba46fe3996ab
+guid: ed7235dbf39a47d47b59fb40e1a57111
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
@@ -40,11 +40,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: fast run
+      name: fightPose
       takeName: mixamo.com
       internalID: -203655887218126122
       firstFrame: 0
-      lastFrame: 16
+      lastFrame: 71
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
