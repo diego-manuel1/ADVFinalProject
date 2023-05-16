@@ -20,6 +20,7 @@ public class ControlPlayer2 : MonoBehaviour
     public float gravity = -9.81f;
     private float fallingVelocity = 0;
     public float jumpSpeed = 20;
+    public float jumpHeight = 0;
     // Use this for initialization
     void Start()
     {
@@ -42,6 +43,7 @@ public class ControlPlayer2 : MonoBehaviour
         //Apply gravity
         if(player.isGrounded)
         {
+            animator.SetBool("Fall", false);
             fallingVelocity= 0;
         }
         else
@@ -51,10 +53,12 @@ public class ControlPlayer2 : MonoBehaviour
 
         if(player.isGrounded && Input.GetButtonDown("Jump"))
         {
-            jump = jumpSpeed;
+            //jump = jumpSpeed;
+            animator.SetBool("Jump", true);
+            jump = Mathf.Sqrt(jumpHeight * -2 * gravity);
         }
+        //Vector3 gravityVector = new Vector3(0, fallingVelocity + jump, 0);
         Vector3 gravityVector = new Vector3(0, fallingVelocity + jump, 0);
-
         movePlayer = playerInput.x * camRight + playerInput.z * camForward;
         //player.transform.LookAt(player.transform.position + movePlayer);
         //player.transform.LookAt(player.transform.position + movePlayer);
@@ -76,5 +80,11 @@ public class ControlPlayer2 : MonoBehaviour
         camRight.y = 0;
         camForward = camForward.normalized;
         camRight = camRight.normalized;
+    }
+
+    public void playerFall()
+    {
+        animator.SetBool("Jump", false);
+        animator.SetBool("Fall", true);
     }
 }
