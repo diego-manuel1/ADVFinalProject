@@ -6,6 +6,7 @@ public class Spawner : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject player;
+    public Camera mainCamera;
     void Start()
     {
         
@@ -19,6 +20,7 @@ public class Spawner : MonoBehaviour
 
     public void Spawn()
     {
+        player.GetComponentInChildren<ControlPlayer2>().mainCamera= mainCamera;
         Instantiate(player, transform.position, Quaternion.identity);
     }
 }

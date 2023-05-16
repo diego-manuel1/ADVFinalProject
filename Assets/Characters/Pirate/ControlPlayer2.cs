@@ -20,7 +20,11 @@ public class ControlPlayer2 : MonoBehaviour
     public float gravity = -9.81f;
     private float fallingVelocity = 0;
     public float jumpSpeed = 20;
-    public float jumpHeight = 0;
+    public float jumpHeight = 1.5f;
+    private Vector3 velocity;
+    //private MovingPlatform platform = null;
+
+
     // Use this for initialization
     void Start()
     {
@@ -38,16 +42,32 @@ public class ControlPlayer2 : MonoBehaviour
 
         playerInput = new Vector3(horizontalMove, 0, verticalMove);
         playerInput = Vector3.ClampMagnitude(playerInput, 1);
+
+        animator.SetFloat("H", currentInput.x);
+        animator.SetFloat("V", currentInput.y);
+
         CamDirection();
 
-        //Apply gravity
-        if(player.isGrounded)
+        /*Vector3 pScale = Vector3.one;
+        if (platform != null)
         {
-            animator.SetBool("Fall", false);
-            fallingVelocity= 0;
+            transform.parent = platform.transform;
+            pScale = platform.transform.localScale;
         }
         else
         {
+            transform.parent = null;
+        }*/
+        //Apply gravity
+        if (player.isGrounded)
+        {
+            animator.SetBool("Fall", false);
+            fallingVelocity= 0;
+            velocity.y = -2f;
+        }
+        else if(!player.isGrounded && !animator.GetBool("Jump"))
+        {
+            animator.SetBool("Fall", true);
             fallingVelocity += gravity * Time.deltaTime;
         }
 
@@ -55,19 +75,18 @@ public class ControlPlayer2 : MonoBehaviour
         {
             //jump = jumpSpeed;
             animator.SetBool("Jump", true);
-            jump = Mathf.Sqrt(jumpHeight * -2 * gravity);
+            //jump = Mathf.Sqrt(jumpHeight * -2 * gravity);
+            velocity.y = Mathf.Sqrt(jumpHeight * -2 * gravity);
         }
         //Vector3 gravityVector = new Vector3(0, fallingVelocity + jump, 0);
-        Vector3 gravityVector = new Vector3(0, fallingVelocity + jump, 0);
         movePlayer = playerInput.x * camRight + playerInput.z * camForward;
-        //player.transform.LookAt(player.transform.position + movePlayer);
-        //player.transform.LookAt(player.transform.position + movePlayer);
-        //player.transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, Camera.main.transform.localEulerAngles.y, transform.localEulerAngles.z);
+        
         player.gameObject.transform.forward = Vector3.Lerp(player.transform.forward, movePlayer, 15f*Time.deltaTime);
-        player.Move((movePlayer * playerSpeed + gravityVector) * Time.deltaTime);
+        
+        player.Move(movePlayer * playerSpeed * Time.deltaTime);
+        velocity.y += gravity * Time.deltaTime;
 
-        animator.SetFloat("H", currentInput.x);
-        animator.SetFloat("V", currentInput.y);
+        player.Move(velocity * Time.deltaTime);
 
         Debug.Log(player.velocity.magnitude);
     }
@@ -87,4 +106,20 @@ public class ControlPlayer2 : MonoBehaviour
         animator.SetBool("Jump", false);
         animator.SetBool("Fall", true);
     }
+    /*
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.CompareTag("Platform") && player.isGrounded)
+        {
+            platform = collision.gameObject.GetComponent<MovingPlatform>();
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Platform"))
+        {
+            platform = null;
+        }
+    }*/
 }

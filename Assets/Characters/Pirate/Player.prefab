@@ -1066,7 +1066,7 @@ CharacterController:
   m_Radius: 0.2
   m_SlopeLimit: 45
   m_StepOffset: 0.3
-  m_SkinWidth: 0.08
+  m_SkinWidth: 0.0001
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.7, z: 0}
 --- !u!114 &3129502165879656965
@@ -1109,7 +1109,7 @@ MonoBehaviour:
   animator: {fileID: 8792341531966711457}
   gravity: -9.81
   jumpSpeed: 20
-  jumpHeight: 30
+  jumpHeight: 1.5
 --- !u!1 &2986198643651107190
 GameObject:
   m_ObjectHideFlags: 0
@@ -1404,7 +1404,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3129502165795370146}
-  m_LocalRotation: {x: -0.16049753, y: 0.000000067055225, z: -0.000000013038516, w: -0.9870363}
+  m_LocalRotation: {x: -0.16049752, y: 0.00000011175871, z: -0.000000018626451, w: -0.9870363}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
