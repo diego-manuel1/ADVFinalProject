@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,10 +15,12 @@ public class GameManager : MonoBehaviour
     public GameObject CameraPlayer;
     public GameObject Player;
     public GameObject barcoAtracado;
+    public AudioSource principalTheme;
     void Start()
     {
         juegoIniciado = false;
         finalActivo = false;
+        principalTheme = this.gameObject.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -30,6 +33,7 @@ public class GameManager : MonoBehaviour
         else if(finalActivo && endingCinematic.state == PlayState.Paused)
         {
             //Cargar escena final
+            SceneManager.LoadScene(1);
         }
     }
 
@@ -43,11 +47,16 @@ public class GameManager : MonoBehaviour
         Player.SetActive(true);
         CameraPlayer.SetActive(true);
         barcoAtracado.SetActive(true);
+
+        principalTheme.loop = true;
+        principalTheme.Play();
+        
     }
 
     public void activarCinematicFinal()
     {
         finalActivo= true;
         endingCinematic.Play();
+        principalTheme.Stop();
     }
 }
