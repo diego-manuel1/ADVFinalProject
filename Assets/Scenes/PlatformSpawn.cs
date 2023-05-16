@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MuerteCaida : MonoBehaviour
+public class PlatformSpawn : MonoBehaviour
 {
     // Start is called before the first frame update
     public ControlSpawn controlSpawn;
+    public int pos = 0;
     void Start()
     {
         
@@ -17,13 +18,19 @@ public class MuerteCaida : MonoBehaviour
         
     }
 
+    /*private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            controlSpawn.cambiarSpawner(pos);
+        }
+    }*/
+
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject)
+        if (other.CompareTag("Player"))
         {
-            //Destroy(other.gameObject);
-            Destroy(other.gameObject.transform.parent.gameObject);
-            controlSpawn.Spawnear();
+            controlSpawn.cambiarSpawner(pos);
         }
     }
 }

@@ -190,6 +190,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Platform5
       objectReference: {fileID: 0}
+    - target: {fileID: 8399000507744417005, guid: 59bcab41e341e7349b802af8b43f1196,
+        type: 3}
+      propertyPath: pos
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8399000507744417005, guid: 59bcab41e341e7349b802af8b43f1196,
+        type: 3}
+      propertyPath: controlSpawn
+      value: 
+      objectReference: {fileID: 206758077}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 59bcab41e341e7349b802af8b43f1196, type: 3}
 --- !u!1 &2626155
@@ -303,7 +313,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d000c86c75d1194bbe32b0200dc81e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawner: {fileID: 1991947473}
+  controlSpawn: {fileID: 206758077}
 --- !u!1 &5417609
 GameObject:
   m_ObjectHideFlags: 0
@@ -1638,7 +1648,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 686ab920144e8e3429a14bc3d816df7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawners: []
+  spawners:
+  - {fileID: 1991947473}
+  - {fileID: 524667656}
+  - {fileID: 1188315861}
+  - {fileID: 857983476}
+  - {fileID: 2040592295}
+  - {fileID: 1699768261}
 --- !u!4 &206758078
 Transform:
   m_ObjectHideFlags: 0
@@ -6408,6 +6424,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Platform3
       objectReference: {fileID: 0}
+    - target: {fileID: 8399000507744417005, guid: 59bcab41e341e7349b802af8b43f1196,
+        type: 3}
+      propertyPath: pos
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8399000507744417005, guid: 59bcab41e341e7349b802af8b43f1196,
+        type: 3}
+      propertyPath: controlSpawn
+      value: 
+      objectReference: {fileID: 206758077}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 59bcab41e341e7349b802af8b43f1196, type: 3}
 --- !u!1 &783962438
@@ -8006,6 +8032,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Platform6
       objectReference: {fileID: 0}
+    - target: {fileID: 8399000507744417005, guid: 59bcab41e341e7349b802af8b43f1196,
+        type: 3}
+      propertyPath: pos
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8399000507744417005, guid: 59bcab41e341e7349b802af8b43f1196,
+        type: 3}
+      propertyPath: controlSpawn
+      value: 
+      objectReference: {fileID: 206758077}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 59bcab41e341e7349b802af8b43f1196, type: 3}
 --- !u!1 &1017250474
@@ -12016,6 +12052,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Platform2
       objectReference: {fileID: 0}
+    - target: {fileID: 8399000507744417005, guid: 59bcab41e341e7349b802af8b43f1196,
+        type: 3}
+      propertyPath: pos
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8399000507744417005, guid: 59bcab41e341e7349b802af8b43f1196,
+        type: 3}
+      propertyPath: controlSpawn
+      value: 
+      objectReference: {fileID: 206758077}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 59bcab41e341e7349b802af8b43f1196, type: 3}
 --- !u!1 &1597701908
@@ -13611,6 +13657,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Platform4
       objectReference: {fileID: 0}
+    - target: {fileID: 8399000507744417005, guid: 59bcab41e341e7349b802af8b43f1196,
+        type: 3}
+      propertyPath: pos
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8399000507744417005, guid: 59bcab41e341e7349b802af8b43f1196,
+        type: 3}
+      propertyPath: controlSpawn
+      value: 
+      objectReference: {fileID: 206758077}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 59bcab41e341e7349b802af8b43f1196, type: 3}
 --- !u!1 &1762211937
@@ -29227,6 +29283,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Platform1
       objectReference: {fileID: 0}
+    - target: {fileID: 8399000507744417005, guid: 59bcab41e341e7349b802af8b43f1196,
+        type: 3}
+      propertyPath: controlSpawn
+      value: 
+      objectReference: {fileID: 206758077}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 59bcab41e341e7349b802af8b43f1196, type: 3}
 --- !u!23 &8523596074813460819
