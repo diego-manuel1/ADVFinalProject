@@ -68,7 +68,8 @@ public class ControlPlayer2 : MonoBehaviour
         else if(!player.isGrounded && !animator.GetBool("Jump"))
         {
             animator.SetBool("Fall", true);
-            fallingVelocity += gravity * Time.deltaTime;
+            //fallingVelocity += gravity * Time.deltaTime;
+            velocity.y += gravity * Time.deltaTime;
         }
 
         if(player.isGrounded && Input.GetButtonDown("Jump"))
